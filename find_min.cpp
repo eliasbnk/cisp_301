@@ -1,8 +1,8 @@
 #include <iostream>
-#include<iomanip>
+#include <iomanip>
 
-
-int main(){
+int main()
+{
     std::cout << std::fixed << std::setprecision(2);
     std::cout << "Item          Qty     Price     Total" << std::endl;
     std::cout << "=========   =====   =======   =======" << std::endl;

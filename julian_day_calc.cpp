@@ -31,22 +31,20 @@ void input_data(int &месяц, int &день, int &год)
     std::cin >> год;
 }
 
-
 // processing module that, using a special formula, calculates the JND for a given date
 void process_data(int month, int day, int year, int &jdn)
 {
 
     int a, b, c, d;
-     a = (14 - month) / 12;
-     b = (month - 3) + (12 * a);
-     c = 4800 + year - a;
-     d = (c / 4) - (c / 100) + (c / 400);
-     jdn = day + (((153 * b) + 2) / 5) + (365 * c) + d - 32045;
+    a = (14 - month) / 12;
+    b = (month - 3) + (12 * a);
+    c = 4800 + year - a;
+    d = (c / 4) - (c / 100) + (c / 400);
+    jdn = day + (((153 * b) + 2) / 5) + (365 * c) + d - 32045;
 }
-
 
 // module that displays the JND to the user
 void output_data(int month, int day, int year, int jdn)
 {
-std::cout << "The JDN for " << month << "/" << day << "/" << year << " is " << jdn << std::endl;
+    std::cout << "The JDN for " << month << "/" << day << "/" << year << " is " << jdn << std::endl;
 }

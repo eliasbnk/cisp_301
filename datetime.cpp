@@ -3,8 +3,8 @@
 // Course     : CISP 301/Krofchok (Spring 2023)
 // Description: Displays the current date and time.
 
-#define _CRT_SECURE_NO_WARNINGS  // Disables Visual Studio warning about using
-                                 //   the localtime() module
+#define _CRT_SECURE_NO_WARNINGS // Disables Visual Studio warning about using
+                                //   the localtime() module
 #include <ctime>
 #include <iostream>
 #include <string>
@@ -22,10 +22,10 @@ void display_ampm(int hour);
 
 int main()
 {
-    int year,  // current year
-    month,    // current month number (1..12)
-        day,  // current day (1..31)
-        hour, // current hour (0..23)
+    int year,   // current year
+        month,  // current month number (1..12)
+        day,    // current day (1..31)
+        hour,   // current hour (0..23)
         minute; // current minute (0..59)
 
     get_datetime(year, month, day, hour, minute);
@@ -39,7 +39,6 @@ int main()
     std::cout << "The current time is ";
     display_time(hour, minute);
     std::cout << std::endl;
-
 }
 
 //
@@ -89,114 +88,131 @@ void display_time(int hour, int minute)
 }
 
 // module computes the Julian Day Number (JDN) for a given year, month, and day
-void compute_jdn(int year, int month, int day, int &jdn){
-int a, b, c, d;
- a = (14 - month) / 12;
- b = (month - 3) + (12 * a);
- c = 4800 + year - a;
- d = (c / 4) - (c / 100) + (c / 400);
- jdn = day + (((153 * b) + 2) / 5) + (365 * c) + d - 32045;
+void compute_jdn(int year, int month, int day, int &jdn)
+{
+    int a, b, c, d;
+    a = (14 - month) / 12;
+    b = (month - 3) + (12 * a);
+    c = 4800 + year - a;
+    d = (c / 4) - (c / 100) + (c / 400);
+    jdn = day + (((153 * b) + 2) / 5) + (365 * c) + d - 32045;
 }
 
 // module computes the day of the week (0-6, where 0 is Sunday and 6 is Saturday) for a given year, month, and day
-void compute_dow(int year, int month, int day, int &dow){
- int jdn;
- compute_jdn(year, month, day, jdn);
- dow = (jdn + 1) % 7;
+void compute_dow(int year, int month, int day, int &dow)
+{
+    int jdn;
+    compute_jdn(year, month, day, jdn);
+    dow = (jdn + 1) % 7;
 }
 
 // module gets the name of the month corresponding to a given month number
-void get_month_name(int month, std::string &month_name) {
-    switch(month) {
-        case 1:
-            month_name = "January";
-            break;
-        case 2:
-            month_name = "February";
-            break;
-        case 3:
-            month_name = "March";
-            break;
-        case 4:
-            month_name = "April";
-            break;
-        case 5:
-            month_name = "May";
-            break;
-        case 6:
-            month_name = "June";
-            break;
-        case 7:
-            month_name = "July";
-            break;
-        case 8:
-            month_name = "August";
-            break;
-        case 9:
-            month_name = "September";
-            break;
-        case 10:
-            month_name = "October";
-            break;
-        case 11:
-            month_name = "November";
-            break;
-        case 12:
-            month_name = "December";
+void get_month_name(int month, std::string &month_name)
+{
+    switch (month)
+    {
+    case 1:
+        month_name = "January";
+        break;
+    case 2:
+        month_name = "February";
+        break;
+    case 3:
+        month_name = "March";
+        break;
+    case 4:
+        month_name = "April";
+        break;
+    case 5:
+        month_name = "May";
+        break;
+    case 6:
+        month_name = "June";
+        break;
+    case 7:
+        month_name = "July";
+        break;
+    case 8:
+        month_name = "August";
+        break;
+    case 9:
+        month_name = "September";
+        break;
+    case 10:
+        month_name = "October";
+        break;
+    case 11:
+        month_name = "November";
+        break;
+    case 12:
+        month_name = "December";
     }
 }
 
 // module gets the name of the day of the week corresponding to a given day of the week number
-void get_weekday_name(int dow, std::string &weekday_name){
-    switch(dow) {
-        case 0:
-            weekday_name = "Sunday";
-            break;
-        case 1:
-            weekday_name = "Monday";
-            break;
-        case 2:
-            weekday_name = "Tuesday";
-            break;
-        case 3:
-            weekday_name = "Wednesday";
-            break;
-        case 4:
-            weekday_name = "Thursday";
-            break;
-        case 5:
-            weekday_name = "Friday";
-            break;
-        case 6:
-            weekday_name = "Saturday";
-        }
+void get_weekday_name(int dow, std::string &weekday_name)
+{
+    switch (dow)
+    {
+    case 0:
+        weekday_name = "Sunday";
+        break;
+    case 1:
+        weekday_name = "Monday";
+        break;
+    case 2:
+        weekday_name = "Tuesday";
+        break;
+    case 3:
+        weekday_name = "Wednesday";
+        break;
+    case 4:
+        weekday_name = "Thursday";
+        break;
+    case 5:
+        weekday_name = "Friday";
+        break;
+    case 6:
+        weekday_name = "Saturday";
+    }
 }
 
-//module displays the hour in 12-hour format, adjusting for midnight (0 hours) and converting from 24-hour format
-void display_hour(int hour){
-    if (hour == 0) {
+// module displays the hour in 12-hour format, adjusting for midnight (0 hours) and converting from 24-hour format
+void display_hour(int hour)
+{
+    if (hour == 0)
+    {
         hour = 12;
-    } else if (hour > 12) {
+    }
+    else if (hour > 12)
+    {
         hour -= 12;
     }
-     std::cout << hour << ":";
+    std::cout << hour << ":";
 }
-
 
 // module displays the minute, adding a leading zero if necessary
-void display_minute(int minute){
-if(minute <= 9) {
-    std::cout << "0" << minute;
-} else{
-    std::cout << minute;
-}
+void display_minute(int minute)
+{
+    if (minute <= 9)
+    {
+        std::cout << "0" << minute;
+    }
+    else
+    {
+        std::cout << minute;
+    }
 }
 
 // module displays "a.m." or "p.m." depending on whether the hour is before or after noon
-void display_ampm(int hour){
-if(hour >= 12) {
-    std::cout << " p.m.";
-} else{
-    std::cout << " a.m.";
-}
+void display_ampm(int hour)
+{
+    if (hour >= 12)
+    {
+        std::cout << " p.m.";
+    }
+    else
+    {
+        std::cout << " a.m.";
+    }
 }

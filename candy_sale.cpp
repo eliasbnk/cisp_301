@@ -21,10 +21,11 @@
 #include <iostream>
 #include <iomanip>
 
-
-void input_data(float& pounds);
-void preform_calculations(float pounds, double& subtotal, double& total, double tax, float& excess_pound, float &first_five_pounds);
-void output_results(double subtotal, double total, double tax, float excess_pounds, float first_five_pounds);
+void input_data(float &pounds);
+void preform_calculations(float pounds, double &subtotal, double &total,
+						  double tax, float &excess_pound, float &first_five_pounds);
+void output_results(double subtotal, double total, double tax,
+					float excess_pounds, float first_five_pounds);
 
 int main()
 {
@@ -36,29 +37,26 @@ int main()
 	double total;
 
 	input_data(pounds);
-	preform_calculations(pounds, subtotal, total, tax, excess_pounds, first_five_pounds);
-	output_results(subtotal, total, tax, excess_pounds, first_five_pounds);
-
+	preform_calculations(pounds, subtotal, total,
+						 tax, excess_pounds, first_five_pounds);
+	output_results(subtotal, total, tax,
+				   excess_pounds, first_five_pounds);
 }
-
-
-
 
 // An input module that reads how many pounds of
 // candy the customer wants to purchase.
 
-void input_data(float& pounds)
+void input_data(float &pounds)
 {
 	std::cout << "Welcome to Elias's Candy Shop!" << std::endl;
 	std::cout << "Please enter amount of candy purchased in pounds: ";
 	std::cin >> pounds;
 }
 
-
-
 // A module that calculates the customers total based on how many pounds they are buying and items set price.
 
-void preform_calculations(float pounds, double& subtotal, double& total, double tax, float &excess_pounds, float &first_five_pounds)
+void preform_calculations(float pounds, double &subtotal, double &total,
+						  double tax, float &excess_pounds, float &first_five_pounds)
 {
 	if (pounds <= 5)
 	{
@@ -75,9 +73,6 @@ void preform_calculations(float pounds, double& subtotal, double& total, double 
 	}
 }
 
-
-
-
 // A module that displays the subtotal, the tax, and the total.
 
 void output_results(double subtotal, double total, double tax, float excess_pounds, float first_five_pounds)
@@ -87,11 +82,13 @@ void output_results(double subtotal, double total, double tax, float excess_poun
 	std::cout << std::setw(27) << "Elias's Candy Shop" << std::endl;
 	std::cout << "-------------------------------------" << std::endl;
 	std::cout << std::endl;
-	std::cout <<  std::setw(12) << "- Truffles" << std::endl;
+	std::cout << std::setw(12) << "- Truffles" << std::endl;
 	std::cout << std::endl;
-	std::cout << std::fixed << std::setprecision(2) << std::setw(12) << first_five_pounds << " lb" << " @ $20.00/lb" << std::endl;
+	std::cout << std::fixed << std::setprecision(2) << std::setw(12) << first_five_pounds << " lb"
+			  << " @ $20.00/lb" << std::endl;
 	std::cout << std::endl;
-	std::cout << std::fixed << std::setprecision(2) << std::setw(12) << excess_pounds << " lb" << " @ $12.00/lb" << std::endl;
+	std::cout << std::fixed << std::setprecision(2) << std::setw(12) << excess_pounds << " lb"
+			  << " @ $12.00/lb" << std::endl;
 	std::cout << std::endl;
 	std::cout << "-------------------------------------" << std::endl;
 	std::cout << std::setw(18) << std::fixed << std::setprecision(2) << "Subtotal: $" << subtotal << std::endl;

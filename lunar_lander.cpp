@@ -16,25 +16,25 @@
 #include <iomanip>
 #include <iostream>
 
-#define INITIAL_ALTITUDE   700.0
-#define INITIAL_VELOCITY  -100.0
-#define INITIAL_FUEL       100.0
-#define PI                 3.14159
+#define INITIAL_ALTITUDE 700.0
+#define INITIAL_VELOCITY -100.0
+#define INITIAL_FUEL 100.0
+#define PI 3.14159
 
 void welcome();
 void initialize(int &time, double &altitude, double &velocity, double &fuel);
 void show_header();
 void show_stats(int time, double altitude, double velocity, double fuel, double &burn);
 void recalculate(double burn, int &time, double &altitude, double &velocity,
-  double &fuel);
+                 double &fuel);
 
 int main()
 {
-    int    time;      // time since start of game
-    double altitude,  // altitude of player's capsule above moon
-           velocity,  // velocity of capsule
-           fuel,      // amount of fuel remaining in capsule
-           burn;      // amount of fuel to burn during this turn
+    int time;        // time since start of game
+    double altitude, // altitude of player's capsule above moon
+        velocity,    // velocity of capsule
+        fuel,        // amount of fuel remaining in capsule
+        burn;        // amount of fuel to burn during this turn
 
     // Set display of decimal numbers to one digit after decimal point
     std::cout << std::fixed << std::setprecision(1);
@@ -42,17 +42,19 @@ int main()
     welcome();
     initialize(time, altitude, velocity, fuel);
     show_header();
-    do {
-if (fuel > 0.0 ){
+    do
+    {
+        if (fuel > 0.0)
+        {
 
+            show_stats(time, altitude, velocity, fuel, burn);
+            recalculate(burn, time, altitude, velocity, fuel);
+        }
+        else if (fuel == 0.0)
+        {
+        }
 
-    show_stats(time, altitude, velocity, fuel, burn);
-    recalculate(burn, time, altitude, velocity, fuel);
-} else if(fuel == 0.0) {
-
-}
-
-    }   while (fuel > 0.0 || fuel == 0.0);
+    } while (fuel > 0.0 || fuel == 0.0);
 }
 
 //
@@ -70,10 +72,10 @@ void welcome()
 //
 void initialize(int &time, double &altitude, double &velocity, double &fuel)
 {
-    time     = 0;
+    time = 0;
     altitude = INITIAL_ALTITUDE;
     velocity = INITIAL_VELOCITY;
-    fuel     = INITIAL_FUEL;
+    fuel = INITIAL_FUEL;
 }
 
 //
@@ -93,40 +95,39 @@ void show_header()
 void show_stats(int time, double altitude, double velocity, double fuel, double &burn)
 {
 
-   do {
-        std::cout << std::setw(2) << time     << "  "
-              << std::setw(8) << altitude << "  "
-              << std::setw(8) << velocity << "  "
-              << std::setw(6) << fuel     << "  ";
-                std::cin >> burn;
+    do
+    {
+        std::cout << std::setw(2) << time << "  "
+                  << std::setw(8) << altitude << "  "
+                  << std::setw(8) << velocity << "  "
+                  << std::setw(6) << fuel << "  ";
+        std::cin >> burn;
 
- if ( (burn < 0) || (burn > fuel)){
- std::cout << "*** You can't do that"
-                  << "Burning no fuel."
-                  << std::endl;
- }
-} while (burn < 0 || burn > fuel);
-
+        if ((burn < 0) || (burn > fuel))
+        {
+            std::cout << "*** You can't do that"
+                      << "Burning no fuel."
+                      << std::endl;
+        }
+    } while (burn < 0 || burn > fuel);
 }
 
 //
 // An input module that reads a burn value from the user.
 //
 
-
 //
 // A processing module that recalculates the player's time, altitude, velocity
 // and fuel, given a burn value.
 //
 void recalculate(double burn, int &time, double &altitude, double &velocity,
-  double &fuel)
+                 double &fuel)
 {
-    double acceleration;  // acceleration of capsule
+    double acceleration; // acceleration of capsule
 
     time = time + 1;
     fuel = fuel - burn;
-    acceleration = (2.3 * burn) - ((burn * fuel) / 200.0)
-                     - (2.0 * PI);
+    acceleration = (2.3 * burn) - ((burn * fuel) / 200.0) - (2.0 * PI);
     velocity = velocity + acceleration;
     altitude = altitude + velocity - (acceleration / 2.0);
 }

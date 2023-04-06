@@ -4,12 +4,11 @@
 // Description: calculates and displays various pieces of information
 //              related to a person's birthday and the current date.
 
-
-
 #include <iostream>
 
 // module prompts the user to enter a month, day, and year for a date
-void get_date(int& year, int& month, int& day) {
+void get_date(int &year, int &month, int &day)
+{
     std::cout << "Enter month number (Jan=1, Feb=2, etc.): ";
     std::cin >> month;
     std::cout << "Enter day number: ";
@@ -20,7 +19,8 @@ void get_date(int& year, int& month, int& day) {
 }
 
 // module calculates the Julian day number for a given date
-void compute_jdn(int year, int month, int day, int& jdn) {
+void compute_jdn(int year, int month, int day, int &jdn)
+{
     int a, b, c, d;
     a = (14 - month) / 12;
     b = (month - 3) + (12 * a);
@@ -30,25 +30,30 @@ void compute_jdn(int year, int month, int day, int& jdn) {
 }
 
 // module calculates the day of the week for a given date
-void compute_dow(int year, int month, int day, int& dow) {
+void compute_dow(int year, int month, int day, int &dow)
+{
     int jdn;
     compute_jdn(year, month, day, jdn);
     dow = (jdn + 1) % 7;
 }
 
-
 // module calculates the number of days between two JDNs
-void compute_days(int jdn1, int jdn2, int& days_between) {
+void compute_days(int jdn1, int jdn2, int &days_between)
+{
     days_between = jdn2 - jdn1;
 }
 
 // module print a date in the format "month/day/year"
-void display_date(int year, int month, int day) {
+void display_date(int year, int month, int day)
+{
     std::cout << month << "/" << day << "/" << year;
 }
 
 // module prints several pieces of information about the user's birthday and the current date
-void display_results(int today_year, int today_month, int today_day, int today_jdn, int birthday_year, int birthday_month, int birthday_day, int birthday_jdn, int birthday_dow, int days_between) {
+void display_results(int today_year, int today_month, int today_day,
+                     int today_jdn, int birthday_year, int birthday_month,
+                     int birthday_day, int birthday_jdn, int birthday_dow, int days_between)
+{
     std::cout << "The JDN for ";
     display_date(today_year, today_month, today_day);
     std::cout << " is " << today_jdn << std::endl;
@@ -59,7 +64,8 @@ void display_results(int today_year, int today_month, int today_day, int today_j
     std::cout << "It has been " << days_between << " days since you were born" << std::endl;
 }
 
-int main() {
+int main()
+{
     int today_year, today_month, today_day, today_jdn;
     int birthday_year, birthday_month, birthday_day, birthday_jdn;
     int birthday_dow, days_between;
@@ -77,7 +83,10 @@ int main() {
 
     compute_days(birthday_jdn, today_jdn, days_between);
 
-    display_results(today_year, today_month, today_day, today_jdn, birthday_year, birthday_month, birthday_day, birthday_jdn, birthday_dow, days_between);
+    display_results(today_year, today_month,
+                    today_day, today_jdn, birthday_year,
+                    birthday_month, birthday_day,
+                    birthday_jdn, birthday_dow, days_between);
 
     return 0;
 }

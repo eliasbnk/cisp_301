@@ -12,23 +12,26 @@ int main()
 {
     double celsius, fahrenheit;
     input_data(fahrenheit);
-    perform_calculations( fahrenheit, celsius);
-    output_results(celsius,fahrenheit);
+    perform_calculations(fahrenheit, celsius);
+    output_results(celsius, fahrenheit);
 }
 
-void input_data(double &fahrenheit){
-    std::cout << std::setw(53) << "Farenheit to Celsius Converter" << std::endl << std::endl;
+void input_data(double &fahrenheit)
+{
+    std::cout << std::setw(53) << "Farenheit to Celsius Converter" << std::endl
+              << std::endl;
     std::cout << "Please provide the temperature in Farenheit to be converted to Celsius." << std::endl;
     std::cout << "Enter temp in F (ex: 32, 68, 98.6, 212): ";
     std::cin >> fahrenheit;
 }
 
-void perform_calculations(double fahrenheit, double &celsius )
+void perform_calculations(double fahrenheit, double &celsius)
 {
-    celsius = (5.0/9) * (fahrenheit - 32);
+    celsius = (5.0 / 9) * (fahrenheit - 32);
 }
 
-void output_results(double celsius, double fahrenheit) {
+void output_results(double celsius, double fahrenheit)
+{
     std::cout << std::endl;
     std::cout << "Calculating..." << std::endl;
     std::cout << std::endl;

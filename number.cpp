@@ -6,11 +6,9 @@
 #include <iostream>
 
 void welcome();
-void input_data(double& a, double& b);
+void input_data(double &a, double &b);
 void perform_calculations(double a, double b, double &c);
 void output_results(double a, double b, double c);
-
-
 
 int main()
 {
@@ -39,7 +37,8 @@ void welcome()
 
 // An input module that gets the addends.
 
-void input_data(double& a, double& b) {
+void input_data(double &a, double &b)
+{
 	std::cout << "Enter addend 'A': ";
 	std::cin >> a;
 	std::cout << "Enter addend 'B': ";
@@ -51,7 +50,8 @@ void input_data(double& a, double& b) {
 // provided by the user.
 //
 
-void perform_calculations(double a, double b, double& c) {
+void perform_calculations(double a, double b, double &c)
+{
 	c = a + b;
 }
 
@@ -59,10 +59,11 @@ void perform_calculations(double a, double b, double& c) {
 // An output module that displays the sum.
 //
 
-void output_results(double a, double b, double c) {
+void output_results(double a, double b, double c)
+{
 	std::cout << std::endl;
 	std::cout << "The sum of "
-		<< a << " and "
-		<< b << " is "
-		<< c << std::endl;
+			  << a << " and "
+			  << b << " is "
+			  << c << std::endl;
 }
